@@ -6,3 +6,5 @@ var Search = React.createClass({
     return (<h1>Hello!</h1>);       
   }
 });
+
+module.exports = Search;
