@@ -7,7 +7,7 @@ var Result = React.createClass({
   render: function() {
     return (
       <li>
-        <a artistId={this.props.artist.id} onClick={this.handleClick} >
+        <a key={this.props.artist.id} artistId={this.props.artist.id} onClick={this.handleClick} >
             {this.props.artist.name}
         </a>
       </li>

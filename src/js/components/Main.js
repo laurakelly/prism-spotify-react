@@ -12,7 +12,6 @@ var Main = React.createClass({
   },
   artistDetail: function(artist) {
     // Fetch artist's top songs and switch routes
-    console.log(artist)
     var topSongsUrl = "https://api.spotify.com/v1/artists/" + artist.id + "/top-tracks?country=US";
 
     jquery.get(topSongsUrl, function(data) {
