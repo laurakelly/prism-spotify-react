@@ -1,6 +1,7 @@
 Latest work is on `fix-gulp` branch.
 
 To install and view the latest code:
+
 1. Clone the repo
 2. Navigate into cloned repo
 3. `git checkout fix-gulp` (branch with code after Mac error was fixed)
