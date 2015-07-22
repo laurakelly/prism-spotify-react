@@ -6469,3 +6469,5 @@ button.close {
     display: none !important; } }
 
 /*# sourceMappingURL=bootstrap.css.map */
+#searchResults a {
+  cursor: pointer; }

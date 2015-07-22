@@ -1,11 +1,15 @@
 var React = require("react");
 
 var Result = React.createClass({
+  handleClick: function(e) {
+    this.props.artistDetail(this.props.artist);
+  },
   render: function() {
     return (
       <li>
-        <img />
-        <p>Artist Name</p>
+        <a artistId={this.props.artist.id} onClick={this.handleClick} >
+            {this.props.artist.name}
+        </a>
       </li>
     );
   }
@@ -13,10 +17,16 @@ var Result = React.createClass({
 
 var SearchResults = React.createClass({
   render: function() {
+    var results = [];
+
+    for (var i = 0; i < this.props.artists.length; i++) {
+      results.push(<Result artist={this.props.artists[i]} artistDetail={this.props.artistDetail} />);
+    }
+
     return (
-      <div id="searchResults" className="col-md-8 col-md-offset-2">
+            <div id="searchResults" className="col-md-8 col-md-offset-2">
         <ul>
-          <Result />
+          {results}
         </ul>
       </div>
     );

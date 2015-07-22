@@ -1,5 +1,5 @@
 var React = require("react");
-var jquery = require('jquery');
+var jquery = require("jquery");
 var SearchResults = require("./SearchResults");
 
 var Search = React.createClass({
@@ -7,21 +7,28 @@ var Search = React.createClass({
     return {userInput: "", searchResults: []};
   },
   generateQuery: function(input) {
+    if (input.length === 0) return null;
+
     // Replace spaces with '%20' so Spotify can parse it
     return "q=" + input.replace(/\s/g,"%20") + "&type=artist";
   },
   handleChange: function(e) {
-    this.setState({ userInput: e.target.value });
-  },
-  handleSubmit: function(e) {
-    e.preventDefault();
-    var query = this.generateQuery(this.state.userInput); 
+    var userInput = e.target.value, 
+      query = this.generateQuery(userInput); 
 
-    jquery.ajax({
-      url: "https://api.spotify.com/v1/search?" + query,
-    }).done(function(data){
-      this.setState({searchResults: data.artists.items});
-    }.bind(this));
+    this.setState({userInput: userInput})
+
+    if (query) {
+      jquery.ajax({
+        url: "https://api.spotify.com/v1/search?" + query,
+      }).done(function(data){
+        this.setState({
+          searchResults: data.artists.items,
+        });
+      }.bind(this));
+    } else {
+      this.setState({searchResults: []});
+    }
   },
   render: function() {
     return (
@@ -39,13 +46,10 @@ var Search = React.createClass({
                 onChange={this.handleChange}>
               </input>
             </div>
-            <button type="submit" className="btn btn-default" onClick={this.handleSubmit}>
-              Submit
-            </button>
           </form>
         </div>
 
-        <SearchResults />
+        <SearchResults artists={this.state.searchResults} artistDetail={this.props.artistDetail} />
       </div>
     );       
   }
