@@ -2,8 +2,18 @@ var React = require("react");
 
 var Search = React.createClass({
   render: function() {
-    console.log("here");
-    return (<h1>Hello!</h1>);       
+    return (
+      <div id="searchBox" className="col-md-8 col-md-offset-2">
+        <h1>Search for an Artist</h1>
+        <form className="form-inline">
+          <div className="form-group">
+            <input type="text" className="form-control" id="spotifyQuery" placeholder="Search Spotify">
+            </input>
+          </div>
+          <button type="submit" className="btn btn-default">Submit</button>
+        </form>
+      </div>
+    );       
   }
 });
 

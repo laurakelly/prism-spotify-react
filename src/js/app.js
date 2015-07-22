@@ -1,9 +1,9 @@
 var React = require("react");
-var Search = require("./components/Search");
+var Main = require("./components/Main");
 
 
 /* App entry point */
 React.render(
-  <Search />,
+  <Main />,
   document.getElementById("container")
 );
